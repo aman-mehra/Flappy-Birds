@@ -5,9 +5,9 @@ os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (250,100)
 pygame.init()
 pygame.mixer.init()
 
-soundpt=pygame.mixer.Sound("point.wav")
-soundlose=pygame.mixer.Sound("gameover.wav")
-soundflap=pygame.mixer.Sound("swoosh.wav")
+soundpt=pygame.mixer.Sound("assets/sounds/point.wav")
+soundlose=pygame.mixer.Sound("assets/sounds/gameover.wav")
+soundflap=pygame.mixer.Sound("assets/sounds/swoosh.wav")
 
 app_exit=False
 
@@ -37,7 +37,7 @@ clock=pygame.time.Clock()
 
 def menu(cyan):
 
-    imag=pygame.image.load("Menubackground.PNG")
+    imag=pygame.image.load("assets/images/Menubackground.png")
     imag=pygame.transform.scale(imag,(1000,700))
     display.fill(white)
     display.blit(imag,(0,0))
@@ -84,7 +84,7 @@ def menu(cyan):
 
 def instructions(cyan):
 
-    imag=pygame.image.load("Menubackground.PNG")
+    imag=pygame.image.load("assets/images/Menubackground.png")
     imag=pygame.transform.scale(imag,(1000,700))
     display.fill(white)
     display.blit(imag,(0,0))
@@ -98,7 +98,7 @@ def instructions(cyan):
     text("There are two backgrounds to choose from",320,font)
     text("So sit back and enjoy",370,font)
 
-    back=pygame.image.load("back.PNG")
+    back=pygame.image.load("assets/images/back.png")
     back=pygame.transform.scale(back,(100,50))
     display.blit(back,(0,0))
 
@@ -239,18 +239,18 @@ while not app_exit:#loop to control entry and exit from application
     display.fill(white)
 
     if back==1:
-        background=pygame.image.load("Birdbackground.png")
+        background=pygame.image.load("assets/images/Birdbackground.png")
         display.blit(background,(0,0))
 
     elif back==2:
-        background=pygame.image.load("CherryBlossom.png")
+        background=pygame.image.load("assets/images/CherryBlossom.png")
         background=pygame.transform.scale(background,(1000,700))
         display.blit(background,(0,0))
 
     elif back==0:
         break
 
-    img=pygame.image.load("bird2.gif")
+    img=pygame.image.load("assets/images/bird2.gif")
     img=pygame.transform.scale(img,(50,50))
     img=img.subsurface(0,3,50,44)
     img=pygame.transform.scale(img,(50,50))
@@ -305,14 +305,14 @@ while not app_exit:#loop to control entry and exit from application
 
         if pipe_x[0]==1000:
             pipe_height[0]=pipes()
-            pipe1=pygame.image.load("Warp Pipe.png")
+            pipe1=pygame.image.load("assets/images/Warp Pipe.png")
             pipe1=pygame.transform.scale(pipe1,(pipe_width,pipe_height[0]))
             p1in=pygame.transform.scale(pipe1,(pipe_width,700-(pipe_height[0]+gap)))
             p1in=pygame.transform.rotate(p1in,180)
             
         elif pipe_x[0]==667:
             pipe_height[1]=pipes()
-            pipe2=pygame.image.load("Warp Pipe.png")
+            pipe2=pygame.image.load("assets/images/Warp Pipe.png")
             pipe2=pygame.transform.scale(pipe2,(pipe_width,pipe_height[1]))
             p2in=pygame.transform.scale(pipe2,(pipe_width,700-(pipe_height[1]+gap)))
             p2in=pygame.transform.rotate(p2in,180)
@@ -321,7 +321,7 @@ while not app_exit:#loop to control entry and exit from application
             
         elif pipe_x[0]==334:
             pipe_height[2]=pipes()
-            pipe3=pygame.image.load("Warp Pipe.png")
+            pipe3=pygame.image.load("assets/images/Warp Pipe.png")
             pipe3=pygame.transform.scale(pipe3,(pipe_width,pipe_height[2]))
             p3in=pygame.transform.scale(pipe3,(pipe_width,700-(pipe_height[2]+gap)))
             p3in=pygame.transform.rotate(p3in,180)
@@ -329,7 +329,7 @@ while not app_exit:#loop to control entry and exit from application
             
         elif pipe_x[0]==1:
             pipe_height[3]=pipes()
-            pipe4=pygame.image.load("Warp Pipe.png")
+            pipe4=pygame.image.load("assets/images/Warp Pipe.png")
             pipe4=pygame.transform.scale(pipe4,(pipe_width,pipe_height[3]))
             p4in=pygame.transform.scale(pipe4,(pipe_width,700-(pipe_height[3]+gap)))
             p4in=pygame.transform.rotate(p4in,180)
@@ -384,7 +384,7 @@ while not app_exit:#loop to control entry and exit from application
 
             pygame.time.wait(500)
             
-            imag=pygame.image.load("Menubackground.PNG")
+            imag=pygame.image.load("assets/images/Menubackground.png")
             imag=pygame.transform.scale(imag,(1000,700))
             display.fill(white)
             display.blit(imag,(0,0))
