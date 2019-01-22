@@ -73,7 +73,7 @@ def menu(cyan):
     label2=fonts.render("CHERRY BLOSSOMS",True,cyan)
     label3=fonts.render("GREENERY",True,cyan)
     label4=fonts.render("INSTRUCTIONS",True,cyan)
-    
+
     pygame.draw.rect(display,(255,0,0),(350,70,300,60))
     pygame.draw.rect(display,(255,0,0),(350,220,300,60))
     pygame.draw.rect(display,(255,0,0),(350,370,300,60))
@@ -390,19 +390,32 @@ def bird(bird_y,background):
     
 while not app_exit:#loop to control entry and exit from application
 
-    game_exit=False
+    ########## TO DO ##########
+    #Initialize internal game loop control variable - game_exit(~ 1 line)
+
+    ########################
+
     soundlose.stop()
+    
     if setup==1:
         back=menu(cyan)
-        
-    bird_vel=0
-    bird_y=300
+
+    ########## TO DO ##########
+    #Initialize constants for bird(~ 2 lines)
+    #Values - 0 , 300 (b_v, b_y)
+
+    ########################
+
+    #variables to control gravity
     grav=1
     gravsub=1
     
-    pipe_width=70
-    pipe_vel=3
-    gap=220
+    ########## TO DO ##########
+    #Initialize constants for pipes(~ 3 lines)
+    #Values - 70 , 3, 220 (p_w, p_v,g)
+
+    ########################
+
     display.fill(white)
 
     if back==1:
@@ -437,64 +450,103 @@ while not app_exit:#loop to control entry and exit from application
 
     while  not game_exit:
 
-        jump=0
+        # Variable to control flying(0 - disabled 1 - enabled) 
+        jump=0 # Q - Why is it set to zero at every iteration?
+
+        ########## TO DO ##########
+        #Handle user events(~ 8-9 lines)
+        #Tasks :
+        #1.Enable jump on mouse click(hint: MOUSEBUTTONDOWN)
+        #2.Handle game exit caused by clicking on the cross at the top right(hint: event type -> QUIT)
+        #3.Pause game functionality when space bar is pressed. (hint: event -> KEYDOWN ; event key -> K_SPACE)
+        #   there is pause() method proved
+        # Bonus : Can u think of any kind of cheat to add here?
         
-        for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                jump=1
-            if event.type==pygame.QUIT:
-                game_exit=True
-                app_exit=True
-            if event.type==pygame.KEYDOWN and event.key==pygame.K_SPACE:
-                pause()
-                jump=1
-                
+
+        ########################
+        
+        #Checking for jump     
         if jump==1 and bird_y >= 0:
             soundflap.play()
-            leap(points)
+            leap(points)# This facilitates flapping 
 
         if app_exit==True:
             break
 
+        #Gravity
         gravity()
+
+        ########## TO DO ##########
+        # Handle the scenario when bird tries to fly out and above window(~ 2 lines)
+        #Hint: something to do with coordinate(b_y) and velocity(b_v)
         
-        if bird_y <= 0:
-            bird_vel=1
+       
+        ########################        
 
-        pipe_height,pipe_up,pipe_down,pipe_vel_lock = generate_pipes(pipe_x,pipe_height,pipe_down,pipe_up,pipe_vel_lock)
+ 
+        ########## TO DO ##########
+        # Generates pipes(~ 1 line)
+        #Hint: use method generate_pipes(pipe_x,pipe_height,pipe_down,pipe_up,pipe_vel_lock)
         
-        bird(bird_y,background)
+        pipe_height,pipe_up,pipe_down,pipe_vel_lock = #Complete
+        ########################
+        
 
-        draw(pipe_x,pipe_height,pipe_down,pipe_up,background)
-
+        #draws bird and pipes
+        bird(bird_y,background) 
+        draw(pipe_x,pipe_height,pipe_down,pipe_up,background) # <--- Interesting have a look
         display.blit(img,(300,bird_y))
 
         bird_y+=bird_vel
 
-        if bird_vel<0:
+        if bird_vel<0:# <--- Similarly interesting
             display.blit(background,(300,bird_y+50),(300,bird_y+50,50,int(math.fabs(bird_vel))))
         else:
             display.blit(background,(300,bird_y-bird_vel),(300,bird_y-bird_vel,50,int(math.fabs(bird_vel))))
-    
+
+        #Move pipes across screen
         pipe_x = move_pipes(pipe_x,pipe_vel_lock,pipe_vel)
 
-        game_exit=collision(bird_y,pipe_x,pipe_height)
+        ########## TO DO ##########
+        # Check if bird colides with pipe(~ 1 line)
+        #Hint: use collision(b_y,p_x,p_h)
+        #What should it return
+        
+        
+       
+        ########################  
 
         for i in pipe_x:
-            if i==226:
-                points+=1
-                break
+            ########## TO DO ##########
+            #Check if point is earned (~ 3 lines)
+            #Hint: increment point when bird passes pipe
+            # 226
+
+            ########################
             if i ==244:
                 soundpt.play()
             
         score(points)
 
-        if game_exit==True:
-            app_exit,setup = endgame(points)
+        ########## TO DO ##########
+        #Check and handle endgame (~ 2 lines)
+        #Hint: endgame and game_exit are linked
+        #Hint: use endgame method --> endgame(points) : returns (app_exit,setup)
 
-        pygame.display.update()   
+        ########################
         
-        clock.tick(100)
+            
+        ########## TO DO ##########
+        #Update display(~ 1 line)
+
+        ########################
+
+            
+        ########## TO DO ##########
+        #Enforce specified FPS(100 works fine for this)(~ 1 line)
+        #hint: tick-tock
+
+        ########################
 
 
 pygame.quit()
