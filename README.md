@@ -1,6 +1,15 @@
 # Flappy-Birds
 
-Run Flappy Bird Final to play
+A recreation of Flappy Birds using pygame in python
+
+## Usage
+
+Clone repository
+
+```bash
+cd Flappy-Birds
+python '.\Flappy Bird Final.py'
+```
 
 ## Demo
 
